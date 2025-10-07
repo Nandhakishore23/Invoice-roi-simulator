@@ -47,7 +47,7 @@ const Scenario = require('../models/Scenario');
 const { generatePDF } = require('../utils/pdfGenerator');
 
 // Save scenario
-router.post('/', async (req, res) => {
+router.post('/scenarios', async (req, res) => {
     try {
         const scenario = new Scenario(req.body);
         await scenario.save();
@@ -58,7 +58,7 @@ router.post('/', async (req, res) => {
 });
 
 // Get all scenarios
-router.get('/', async (req, res) => {
+router.get('/scenarios', async (req, res) => {
     try {
         const scenarios = await Scenario.find().sort({ createdAt: -1 });
         res.json(scenarios);
