@@ -2,18 +2,201 @@
 @tailwind components;
 @tailwind utilities;
 
-body{ font-family: Arial, Helvetica, sans-serif; margin:0; padding:0; background:#f7f7f8;}
-.container{max-width:920px;margin:32px auto;padding:20px;background:white;border-radius:10px;box-shadow:0 4px 18px rgba(0,0,0,0.06)}
-h1{margin:0 0 16px 0}
-.row{display:flex;gap:16px}
-.col{flex:1}
-.field{margin-bottom:10px}
-label{display:block;font-weight:600;margin-bottom:6px}
-input[type="text"], input[type="number"]{width:100%;padding:8px;border:1px solid #ddd;border-radius:6px}
-button{padding:10px 14px;border:none;border-radius:8px;cursor:pointer}
-.btn-primary{background:#0b76ff;color:white}
-.btn-ghost{background:#eee}
-.results{margin-top:16px;padding:12px;border-radius:8px;background:#fafbfd;border:1px solid #eef2ff}
-.scenarios-list{margin-top:10px}
-.scenario-item{display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid #f0f0f0}
-.small{font-size:13px;color:#666}
+/* Reset & base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #fdfbfb, #ebedee);
+  min-height: 100vh;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-header {
+  background: #0f7cff;
+  color: white;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  animation: fadeIn 1s ease forwards;
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  animation: slideDown 0.8s ease forwards;
+}
+
+.app-header p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.form-section, .scenario-section {
+  flex: 1 1 400px;
+}
+
+.roi-form-container {
+  background: #fff;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+
+.roi-form-container:hover {
+  transform: translateY(-5px);
+}
+
+.roi-form h2 {
+  margin-bottom: 1rem;
+  color: #0f7cff;
+  text-align: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-group input {
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus {
+  border-color: #0f7cff;
+  box-shadow: 0 0 5px rgba(15,124,255,0.4);
+  outline: none;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.btn-primary {
+  background: #0f7cff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #0b5ed7;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(15,124,255,0.3);
+}
+
+.btn-secondary {
+  background: #00b894;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #019874;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,184,148,0.3);
+}
+
+.roi-result {
+  margin-top: 2rem;
+  background: #f5f9ff;
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(15,124,255,0.15);
+}
+
+.roi-result ul {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.roi-result li {
+  margin-bottom: 0.7rem;
+  font-weight: 500;
+}
+
+.scenario-list {
+  background: #fff;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.scenario-list ul {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.scenario-list li {
+  padding: 0.7rem 0;
+  border-bottom: 1px solid #eee;
+  font-weight: 500;
+}
+
+.app-footer {
+  text-align: center;
+  padding: 1rem;
+  background: #0f7cff;
+  color: white;
+  margin-top: auto;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animated-card {
+  animation: fadeIn 0.7s ease forwards, slideUp 0.7s ease forwards;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .app-main {
+    flex-direction: column;
+    align-items: center;
+  }
+}
