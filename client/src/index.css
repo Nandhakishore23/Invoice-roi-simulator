@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{ font-family: Arial, Helvetica, sans-serif; margin:0; padding:0; background:#f7f7f8;}
+.container{max-width:920px;margin:32px auto;padding:20px;background:white;border-radius:10px;box-shadow:0 4px 18px rgba(0,0,0,0.06)}
+h1{margin:0 0 16px 0}
+.row{display:flex;gap:16px}
+.col{flex:1}
+.field{margin-bottom:10px}
+label{display:block;font-weight:600;margin-bottom:6px}
+input[type="text"], input[type="number"]{width:100%;padding:8px;border:1px solid #ddd;border-radius:6px}
+button{padding:10px 14px;border:none;border-radius:8px;cursor:pointer}
+.btn-primary{background:#0b76ff;color:white}
+.btn-ghost{background:#eee}
+.results{margin-top:16px;padding:12px;border-radius:8px;background:#fafbfd;border:1px solid #eef2ff}
+.scenarios-list{margin-top:10px}
+.scenario-item{display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid #f0f0f0}
+.small{font-size:13px;color:#666}
